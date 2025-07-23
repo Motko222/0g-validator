@@ -15,7 +15,6 @@ errors_geth=$(journalctl -u 0geth.service --since "1 hour ago" --no-hostname -o 
 node_height=$(echo $(( 16#$(curl -s localhost:8745 -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' | jq -r .result | sed 's/0x//') )))
 chain_height=$(echo $(( 16#$(curl -s $PUBLIC_RPC -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' | jq -r .result | sed 's/0x//') )))
 diff=$(( $chain_height - $node_height ))
-echo diff $diff
 
 status="ok";message="height=";
 [ $diff -gt 20 ] && status="warning" && message="syncing (behind $diff)";
