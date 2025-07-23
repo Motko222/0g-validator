@@ -13,8 +13,12 @@ errors_chain=$(journalctl -u 0gchaind.service --since "1 hour ago" --no-hostname
 errors_geth=$(journalctl -u 0geth.service --since "1 hour ago" --no-hostname -o cat | grep -c -E "rror|ERR")
 
 node_height=$(echo $(( 16#$(curl -s localhost:8745 -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' | jq -r .result | sed 's/0x//') )))
+chain_height=$(echo $(( 16#$(curl -s $PUBLIC_RPC -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' | jq -r .result | sed 's/0x//') )))
+diff=$(( $chain_height - $node_height ))
+echo diff $diff
 
 status="ok";message="height=";
+[ $diff -gt 20 ] status="warning" && message="syncing (behind $diff)";
 if [ $errors_chain -gt 500 ] || [ $errors_geth -gt 500 ]
 then status="warning" && message="too many errors ($errors_chain/$errors_geth)";
 fi
