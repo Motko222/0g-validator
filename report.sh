@@ -6,7 +6,7 @@ json=~/logs/report-$folder
 source ~/.bash_profile
 source $path/env
 
-version=$(/root/galileo/bin/0gchaind version)
+version=$(/root/galileo/bin/0gchaind version) / $(./geth version | grep "^Version: " | awk '{print $NF}')
 service_chain=$(sudo systemctl status 0gchaind --no-pager | grep "active (running)" | wc -l)
 service_geth=$(sudo systemctl status 0geth --no-pager | grep "active (running)" | wc -l)
 errors_chain=$(journalctl -u 0gchaind.service --since "1 hour ago" --no-hostname -o cat | grep -c -E "rror|ERR")
