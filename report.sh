@@ -18,7 +18,7 @@ diff=$(( $chain_height - $node_height ))
 echo diff $diff
 
 status="ok";message="height=";
-[ $diff -gt 20 ] status="warning" && message="syncing (behind $diff)";
+[ $diff -gt 20 ] && status="warning" && message="syncing (behind $diff)";
 if [ $errors_chain -gt 500 ] || [ $errors_geth -gt 500 ]
 then status="warning" && message="too many errors ($errors_chain/$errors_geth)";
 fi
