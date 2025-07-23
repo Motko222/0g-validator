@@ -1,1 +1,1 @@
-journalctl -u 0gchaind -u geth -f -o cat
+journalctl -u 0gchaind -u 0geth -f -o cat
