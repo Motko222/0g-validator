@@ -41,6 +41,7 @@ cat >$json << EOF
      "chain":"galileo",
      "status":"$status",
      "message":"$message",
+     "m1":"moniker=$MONIKER",
      "url":"$url",
      "errors":"$service_chain/$service_geth",
      "height":"$node_height"
