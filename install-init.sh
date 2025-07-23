@@ -3,11 +3,6 @@ path=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd)
 folder=$(echo $path | awk -F/ '{print $NF}')
 source $path/env
 
-cd $path
-git stash push --include-untracked
-git pull
-chmod +x *.sh
-
 cd /root/galileo
 ./bin/geth init --datadir /root/0g-home/geth-home ./genesis.json
 ./bin/0gchaind init $MONIKER --home /root/tmp
