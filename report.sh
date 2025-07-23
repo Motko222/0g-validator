@@ -40,6 +40,7 @@ cat >$json << EOF
      "network":"testnet",
      "chain":"galileo",
      "status":"$status",
+     "version":"$version",
      "message":"$message",
      "m1":"moniker=$MONIKER",
      "url":"$url",
