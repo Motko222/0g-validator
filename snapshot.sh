@@ -27,7 +27,7 @@ if [ -n "$LATEST_COSMOS" ] && [ -n "$LATEST_GETH" ]; then
     sleep 5
     sudo systemctl restart 0gchaind
 
-    sudo journalctl -u 0gchaind -u geth -f -o cat
+    sudo journalctl -u 0gchaind -u 0geth -f -o cat
   else
     echo "Snapshot URL is not accessible"
   fi
