@@ -44,7 +44,7 @@ cat >$json << EOF
      "message":"$message",
      "m1":"moniker=$MONIKER",
      "url":"$url",
-     "errors":"$service_chain/$service_geth",
+     "errors":"$errors_chain/$errors_geth",
      "height":"$node_height"
   }
 }
