@@ -20,7 +20,7 @@ url=$(wget -qO- eth0.me):8745
 status="ok";message="";
 [ $diff -gt 20 ] && status="warning" && message="syncing (behind $diff)";
 if [ $errors_chain -gt 500 ] || [ $errors_geth -gt 500 ]
-then status="warning" && message="too many errors ($errors_chain/$errors_geth)";
+then status="warning" && message="too many errors ($errors_chain/$errors_geth) (behind $diff)";
 fi
 if [ $service_chain -ne 1 ] || [ $service_geth -ne 1 ]
 then status="error" && message="service not running (chain=$service_chain geth=$service_geth)";
